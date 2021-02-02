@@ -1,0 +1,27 @@
+Long-term sulfate x temperature rearing experiment using Pteronarcys californica.
+Experiment duration: July 28 2020-Dec 28 2020
+Authors: Katy Gardner, Chuck Hawkins 
+
+This experiment is part of a series of long-term lab experiments, designed to better understand the effects of salinity and temperature on macroinvertebrate growth and survival, with special emphasis on specific ion concentrations.
+
+Inputs: 
+raw_data/
+2020-07_USUAL_results.xlsx = beginning of experiment water chemistry results from the USU Analytical Lab
+2021-01_USUAL_results.xlsx = end of experiment water chemistry results from the USU Analytical Lab
+experiment_groups.xlsx & \experiment_groups.csv = pre-experiment determination of experimental groups based on size and random designation
+pre-experiment_measurements.xlsx & \pre-experiment_measurements.csv = measurements of all bugs captured from field when processed in lab
+head-width_measurements.xlsx & \head-width_measurements.csv = weekly head capsule width measurements by individual, raw data
+sulfate_water_calculations.xlsx = amount of sulfate salt added to each tank pre-experiment to achieve desired sulfate levels
+weekly_survival.xlsx & weekly_survival.csv = weekly survival totals by tank
+weekly_water_measurements.xlsx = routine water measurements of temperature, oxygen, and conductivity by treatment tank
+
+processed_data/
+head_growth_wide.xlsx & head_growth_wide.csv = data taken from head-width_measurements.csv and compiled into wide format, to be used in R, also accounts for dead individuals 
+
+Code:
+code/
+bootpredictlme4.R = R package provided by Susan Durham to be used in random-coefficients-model.R
+grouped-bar-plots_growth.R = used to create mid-experiment data visualization figures
+pteronarcys_survival.R = used to visualize survival data
+ptery_size_init.R = script used to determine whether groups in experiment_groups.csv were of similar average size and variance
+random-coefficients-model.R = script used to run random coefficients model on growth data from head_growth_wide.csv
