@@ -25,3 +25,6 @@ grouped-bar-plots_growth.R = used to create mid-experiment data visualization fi
 pteronarcys_survival.R = used to visualize survival data
 ptery_size_init.R = script used to determine whether groups in experiment_groups.csv were of similar average size and variance
 random-coefficients-model.R = script used to run random coefficients model on growth data from head_growth_wide.csv
+
+In my .gitignore, I chose to include the /manuscript/ and /outputs/ folders, because they'll contain images and word documents which are not well tracked with git.
+I also included *.png files, /git.Rproj.user/, .Rhistory, and .gitignore because these things are either too large or unnecessary to track.
