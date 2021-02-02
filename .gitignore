@@ -1,0 +1,6 @@
+/manuscript/
+/outputs/
+*.png
+/git.Rproj.user/
+.Rhistory
+.gitignore
