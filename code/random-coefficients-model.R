@@ -161,3 +161,34 @@ source("bootpredictlme4.R", print = T)
 ## Registered S3 method overwritten by 'bootpredictlme4':
 ## method from
 ## predict.merMod lme4
+
+##ASK SUSAN: what is the above line of code supposed to do? doesn't print anything, takes a while to run.
+
+# extract regression parameter estimates and SEs for each Trt regression----
+# this is the same model as m2, just reparameterized
+m2b <- lmer(length ~ 0 + TANK + TANK : sampling_date_scaled + (sampling_date_scaled || ID.),
+            
+            data = df2,
+            contrasts = list(TANK = contr.sum),
+            control = lmerControl(optimizer ="bobyqa"))
+
+summary(m2b)
+
+#do not have above code working, "error in model.frame.default(data = df2, drop.unused.levels = TRUE, formula = length ~  : 
+#object is not a matrix"
+
+# pairwise comparisons of slopes----
+(lst <- emtrends(m2, "TANK", var = "as.numeric(sampling_date_scaled)"))
+
+# produces the same estimates for slopes ("trend") as model m2b
+(co <- contrast(lst, method = "pairwise"))
+
+# compare model without random slopes to model with random slopes----
+# using a likelihood ratio test (or AIC)
+anova(m1, m2)
+
+# using Safken et al
+# Conditional Model Selection in Mixed-Effects Models with cAIC4
+# arXiv:1803.05664v2 [stat.CO] 17 Mar 2018
+cAIC(m1)
+cAIC(m2)
