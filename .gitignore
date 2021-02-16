@@ -1,6 +1,8 @@
 /manuscript/
 /outputs/
 *.png
+*.pdf
+!database_structure.pdf
 /git.Rproj.user/
 .Rhistory
 .gitignore

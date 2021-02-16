@@ -3,12 +3,12 @@ library(viridis)
 library(dplyr)
 library(plotly)
 library(ggpubr)
+library(tidyr)
 
-setwd("C:/Users/kmg31/Box/Katy/Research/Experiments/Pteronarcys_Sulfate") #laptop working directory
 
 # import head capsule width growth data
 head.wide <- read.csv("Ptery_Sulfate Growth.csv")
-
+##file above renamed and moved, fix
 
 ###OCTOBER 19
 #create grouped bar plots for oct 19

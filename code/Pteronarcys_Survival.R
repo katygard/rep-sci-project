@@ -1,16 +1,17 @@
-setwd("C:/Users/kmg31/Box/Katy/Research/Experiments/Pteronarcys_Sulfate") #laptop working directory
-
-# import data----
-head.wide <- read.csv("Ptery_Sulfate Growth.csv")
-survival.wide <- read.csv("Pteronarcys Sulfate Survival.csv")
-
-survival.long <- gather(survival.wide, sdate, survival, na.rm = F, X28.Jul:X5.Oct)
 
 library(ggplot2)
 library(viridis)
 library(dplyr)
 library(plotly)
 library(ggpubr)
+library(tidyr)
+
+# import data----
+head.wide <- read.csv("../processed_data/head_growth_wide.csv")
+survival.wide <- read.csv("../raw_data/weekly_survival.csv")
+
+survival.long <- gather(survival.wide, sdate, survival, na.rm = F, X28.Jul:X28.Dec)
+
 
 
 survival.long$Sulfate.mg.L <- as.character(survival.long$Sulfate.mg.L)
@@ -29,7 +30,17 @@ survival.long <- survival.long %>%
                                 X28.Sep = "2020-09-28",
                                 X5.Oct = "2020-10-05",
                                 X12.Oct = "2020-10-12",
-                                X19.Oct = "2020-10-19"))
+                                X19.Oct = "2020-10-19",
+                                X26.Oct = "2020-10-26",
+                                X2.Nov = "2020-11-02",
+                                X9.Nov = "2020-11-09",
+                                X16.Nov = "2020-11-16",
+                                X23.Nov = "2020-11-23",
+                                X30.Nov = "2020-11-30",
+                                X7.Dec = "2020-12-07",
+                                X14.Dec = "2020-12-14",
+                                X21.Dec = "2020-12-21",
+                                X28.Dec = "2020-12-28"))
 
 
 with(survival.long, table(sdate2, sdate))
@@ -74,6 +85,23 @@ surf_oct19 <- surf_oct19 %>% layout(scene= list(xaxis = list(title = 'Temperatur
 surf_oct19
 
 htmlwidgets::saveWidget(as_widget(surf_oct19), "surv_surf_oct19.html")
+
+
+###final survival surface plot
+
+z <- matrix(prep1$X28.Dec, 6, 6)
+rownames(z) <- sulf
+colnames(z) <- temp
+
+surf_dec28 <- plot_ly(type = "surface", z=z, x=temp, y=sulf)
+surf_dec28 <- surf_dec28 %>% layout(scene= list(xaxis = list(title = 'Temperature'),
+                                                yaxis = list(title = 'Sulfate mg/L'),
+                                                zaxis = list(title = '# Alive (Dec 28)')))
+
+surf_dec28
+
+htmlwidgets::saveWidget(as_widget(surf_dec28), "surv_surf_dec28.html")
+
 
 
 ####  initial size surface plot
