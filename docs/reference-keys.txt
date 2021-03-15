@@ -1,0 +1,6 @@
+fig:image
+introduction
+database
+creating-the-database-connection
+load-in-.csv-data
+write-a-table-into-the-database

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Building my SQLite database | WILD6900: Reproducible Science Project</title>
+  <meta name="description" content="This is the bookdown file desrcibing the process I am taking in constructing my final project for WILD6900: Reproducible Science, a graduate course at Utah State University." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Building my SQLite database | WILD6900: Reproducible Science Project" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the bookdown file desrcibing the process I am taking in constructing my final project for WILD6900: Reproducible Science, a graduate course at Utah State University." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Building my SQLite database | WILD6900: Reproducible Science Project" />
+  
+  <meta name="twitter:description" content="This is the bookdown file desrcibing the process I am taking in constructing my final project for WILD6900: Reproducible Science, a graduate course at Utah State University." />
+  
+
+<meta name="author" content="Katy Gardner" />
+
+
+<meta name="date" content="2021-03-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">WILD6900: Reproducible Science Project</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="database.html"><a href="database.html"><i class="fa fa-check"></i><b>2</b> Building my SQLite database</a><ul>
+<li class="chapter" data-level="2.1" data-path="database.html"><a href="database.html#creating-the-database-connection"><i class="fa fa-check"></i><b>2.1</b> Creating the database connection</a></li>
+<li class="chapter" data-level="2.2" data-path="database.html"><a href="database.html#load-in-.csv-data"><i class="fa fa-check"></i><b>2.2</b> Load in .csv data</a></li>
+<li class="chapter" data-level="2.3" data-path="database.html"><a href="database.html#write-a-table-into-the-database"><i class="fa fa-check"></i><b>2.3</b> Write a table into the database</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">WILD6900: Reproducible Science Project</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="database" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Building my SQLite database</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#load packages</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(DBI)</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(RSQLite)</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="kw">library</span>(lessR)</a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="kw">library</span>(tibble)</a></code></pre></div>
+<p>For my project, I have 4 main .csv files that I want to incorporate into one database. The files pertain to two main entities: the tanks and the bugs. Tanks contain bugs in certain treatment conditions (temperature and added sulfate). There are 3 sampling processes going on: tanks, bugs, and chemical analyses. Chemical analyses are conducted prior to the start of the experiment and at the end of the experiment. Tanks are measured approximately twice a week (with some variability) for dissolved oxygen, conductivity, and temperature levels as a sort of maintenance measurement. The number of bugs alive per tank is measured once a week and recorded as that tank’s survival. Finally, bugs are measured once every two weeks for head capsule width, which can then be converted to a specific growth measurement. The database structure I intend to follow is displayed below.</p>
+<div class="figure" style="text-align: center"><span id="fig:image"></span>
+<img src="../../assignment4.jpg" alt="Database structure. Italics denote primary key, bold denotes foreign keys." width="100%" />
+<p class="caption">
+Figure 2.1: Database structure. Italics denote primary key, bold denotes foreign keys.
+</p>
+</div>
+<div id="creating-the-database-connection" class="section level2">
+<h2><span class="header-section-number">2.1</span> Creating the database connection</h2>
+<p>First, I will create a database connection in the “project” folder of my Reproducible Science class folder.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co">#establish a database connection</span></a>
+<a class="sourceLine" id="cb2-2" title="2">ptery_sulf_db &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(<span class="dt">drv =</span> RSQLite<span class="op">::</span><span class="kw">SQLite</span>(), </a>
+<a class="sourceLine" id="cb2-3" title="3">                        <span class="st">&quot;../../project/ptery_sulf.db&quot;</span>)</a></code></pre></div>
+</div>
+<div id="load-in-.csv-data" class="section level2">
+<h2><span class="header-section-number">2.2</span> Load in .csv data</h2>
+<p>Next, I want to load in all of the .csv files I intend to add to the database. I’ll start with USUAL water measurement data.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">USUAL_start &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../../../../Research/experiments/sulfate/pteronarcys/raw_data/2020-07_USUAL_results.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb3-2" title="2">USUAL_end &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../../../../Research/experiments/sulfate/pteronarcys/raw_data/2021-01_USUAL_results.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="co">#original USUAL docs had &quot;&lt;&quot; when measurement values were below detection limits (typically &lt;0.001)</span></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="co">#I replaced &quot;&lt;&quot; with empty cells for R purposes. Not sure if empty/blank cells are more appropriate than 0&#39;s?</span></a></code></pre></div>
+<p>We want to combine these two USUAL .csv files into one for the database. Some cleaning needs to be done before merging the two files. Additionally, carbonate and bicarbonate were only measured in the second round of tests (“end”), so these columns will need to be added to the first document.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">USUAL_start &lt;-<span class="st"> </span>USUAL_start <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">USU_ID =</span> ï..USU_ID,</a>
+<a class="sourceLine" id="cb4-3" title="3">         <span class="dt">Sulfate =</span> Sulfate.Sulfur,</a>
+<a class="sourceLine" id="cb4-4" title="4">         <span class="dt">arsenic =</span> As) <span class="co">#renaming columns that imported into R poorly</span></a>
+<a class="sourceLine" id="cb4-5" title="5"></a>
+<a class="sourceLine" id="cb4-6" title="6">USUAL_start &lt;-<span class="st"> </span>USUAL_start[<span class="dv">1</span><span class="op">:</span><span class="dv">37</span>, ] <span class="co">#deleting empty rows that were for some reason included in the csv import</span></a>
+<a class="sourceLine" id="cb4-7" title="7"></a>
+<a class="sourceLine" id="cb4-8" title="8">USUAL_start &lt;-<span class="st"> </span><span class="kw">add_column</span>(USUAL_start, <span class="dt">date =</span> <span class="kw">rep</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2020-07-27&quot;</span>),<span class="dv">37</span>), <span class="dt">.after =</span> <span class="dv">1</span>) <span class="co">#add in date of water sample to differentiate between start and end</span></a>
+<a class="sourceLine" id="cb4-9" title="9"></a>
+<a class="sourceLine" id="cb4-10" title="10">USUAL_end &lt;-<span class="st"> </span>USUAL_end <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">USU_ID =</span> ï..USU_ID,</a>
+<a class="sourceLine" id="cb4-12" title="12">         <span class="dt">Sulfate =</span> Sulfate.Sulfur,</a>
+<a class="sourceLine" id="cb4-13" title="13">         <span class="dt">arsenic =</span> As, <span class="co">#for some reason RSQLite won&#39;t create table with this column name as As</span></a>
+<a class="sourceLine" id="cb4-14" title="14">         <span class="dt">carbonate =</span> Carbonate_mmolc.L,</a>
+<a class="sourceLine" id="cb4-15" title="15">         <span class="dt">bicarbonate =</span> Bicarbonate_mmolc.L) <span class="co">#the &quot;.&quot; in the original name not SQL friendly</span></a>
+<a class="sourceLine" id="cb4-16" title="16"></a>
+<a class="sourceLine" id="cb4-17" title="17">USUAL_end &lt;-<span class="st"> </span>USUAL_end[<span class="dv">1</span><span class="op">:</span><span class="dv">36</span>, ] <span class="co">#USUAL_end has one fewer rows because we did not test the well water a second time</span></a>
+<a class="sourceLine" id="cb4-18" title="18"></a>
+<a class="sourceLine" id="cb4-19" title="19">USUAL_end &lt;-<span class="st"> </span><span class="kw">add_column</span>(USUAL_end, <span class="dt">date =</span> <span class="kw">rep</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2021-01-07&quot;</span>),<span class="dv">36</span>), <span class="dt">.after =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-20" title="20"></a>
+<a class="sourceLine" id="cb4-21" title="21">empty_cols &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;carbonate&quot;</span>, <span class="st">&quot;bicarbonate&quot;</span>) <span class="co">#adding empty columns before vertically merging</span></a>
+<a class="sourceLine" id="cb4-22" title="22">USUAL_start[, empty_cols] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb4-23" title="23"></a>
+<a class="sourceLine" id="cb4-24" title="24"><span class="co">#merge files vertically</span></a>
+<a class="sourceLine" id="cb4-25" title="25">usual &lt;-<span class="st"> </span><span class="kw">Merge</span>(USUAL_start, USUAL_end, <span class="dt">by=</span><span class="st">&quot;rows&quot;</span>)</a></code></pre></div>
+</div>
+<div id="write-a-table-into-the-database" class="section level2">
+<h2><span class="header-section-number">2.3</span> Write a table into the database</h2>
+<p>Let’s add the USUAL dataframe into our database.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">#write table in database</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw">dbExecute</span>(ptery_sulf_db, <span class="st">&quot;CREATE TABLE usual (</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="st">          USU_ID float NOT NULL PRIMARY KEY,</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="st">          date text,</span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="st">          Trough integer,</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="st">          Tank integer,</span></a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="st">          Chloride float, </span></a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="st">          Al float,</span></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="st">          arsenic float,</span></a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="st">          B float,</span></a>
+<a class="sourceLine" id="cb5-11" title="11"><span class="st">          Ba float,</span></a>
+<a class="sourceLine" id="cb5-12" title="12"><span class="st">          Ca float,</span></a>
+<a class="sourceLine" id="cb5-13" title="13"><span class="st">          Cd float,</span></a>
+<a class="sourceLine" id="cb5-14" title="14"><span class="st">          Co float,</span></a>
+<a class="sourceLine" id="cb5-15" title="15"><span class="st">          Cr float,</span></a>
+<a class="sourceLine" id="cb5-16" title="16"><span class="st">          Cu float,</span></a>
+<a class="sourceLine" id="cb5-17" title="17"><span class="st">          Fe float,</span></a>
+<a class="sourceLine" id="cb5-18" title="18"><span class="st">          K float,</span></a>
+<a class="sourceLine" id="cb5-19" title="19"><span class="st">          Mg float,</span></a>
+<a class="sourceLine" id="cb5-20" title="20"><span class="st">          Mn float,</span></a>
+<a class="sourceLine" id="cb5-21" title="21"><span class="st">          Mo float,</span></a>
+<a class="sourceLine" id="cb5-22" title="22"><span class="st">          Na float,</span></a>
+<a class="sourceLine" id="cb5-23" title="23"><span class="st">          Ni float,</span></a>
+<a class="sourceLine" id="cb5-24" title="24"><span class="st">          P float,</span></a>
+<a class="sourceLine" id="cb5-25" title="25"><span class="st">          Pb float,</span></a>
+<a class="sourceLine" id="cb5-26" title="26"><span class="st">          S float,</span></a>
+<a class="sourceLine" id="cb5-27" title="27"><span class="st">          Se float,</span></a>
+<a class="sourceLine" id="cb5-28" title="28"><span class="st">          Si float,</span></a>
+<a class="sourceLine" id="cb5-29" title="29"><span class="st">          Sr float,</span></a>
+<a class="sourceLine" id="cb5-30" title="30"><span class="st">          Zn float,</span></a>
+<a class="sourceLine" id="cb5-31" title="31"><span class="st">          Sulfate float,</span></a>
+<a class="sourceLine" id="cb5-32" title="32"><span class="st">          carbonate float,</span></a>
+<a class="sourceLine" id="cb5-33" title="33"><span class="st">          bicarbonate float);&quot;</span>)</a>
+<a class="sourceLine" id="cb5-34" title="34"></a>
+<a class="sourceLine" id="cb5-35" title="35"><span class="kw">dbWriteTable</span>(ptery_sulf_db, <span class="st">&quot;usual&quot;</span>, usual, <span class="dt">append =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb5-36" title="36"><span class="kw">dbListTables</span>(ptery_sulf_db) </a></code></pre></div>
+<p>With the table added, let’s check to see that it worked before moving on to the other 3 tables.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">dbGetQuery</span>(ptery_sulf_db, <span class="st">&quot;SELECT * FROM usual LIMIT 10;&quot;</span>)</a></code></pre></div>
+<pre><code>##    USU_ID    date Trough Tank Chloride Al arsenic     B Ba     Ca Cd    Co
+## 1    2333 18470.0      1    1     3.42 NA   0.006 0.004 NA   6.29 NA    NA
+## 2    2334 18470.0      1    2     2.37 NA   0.005 0.004 NA 104.00 NA 0.001
+## 3    2335 18470.0      1    3     2.68 NA   0.004 0.005 NA 242.00 NA 0.001
+## 4    2336 18470.0      1    4     2.40 NA      NA 0.003 NA  54.80 NA    NA
+## 5    2337 18470.0      1    5     2.45 NA   0.003 0.004 NA 195.00 NA 0.001
+## 6    2338 18470.0      1    6     2.57 NA   0.002 0.003 NA 151.00 NA    NA
+## 7    2339 18470.0      2    7     2.36 NA   0.004 0.004 NA 148.00 NA    NA
+## 8    2340 18470.0      2    8     2.42 NA   0.006 0.002 NA  56.10 NA    NA
+## 9    2341 18470.0      2    9     2.38 NA   0.004 0.002 NA   6.70 NA    NA
+## 10   2342 18470.0      2   10     2.33 NA   0.002 0.004 NA 101.00 NA 0.001
+##       Cr    Cu Fe    K     Mg    Mn Mo   Na    Ni  P    Pb      S Se   Si   Sr
+## 1     NA 0.003 NA 0.17   2.13    NA NA 0.93    NA NA 0.001   0.61 NA 0.76 0.02
+## 2     NA 0.002 NA 0.18  44.10    NA NA 0.88    NA NA    NA 138.00 NA 0.86 0.03
+## 3     NA    NA NA 0.30 105.00 0.002 NA 0.89    NA NA    NA 338.00 NA 0.82 0.06
+## 4     NA 0.001  0 0.22  23.00    NA NA 0.84    NA NA 0.001  69.10 NA 0.80 0.03
+## 5  0.001    NA NA 0.14  83.40    NA NA 0.77    NA NA    NA 268.00 NA 0.75 0.05
+## 6     NA 0.003 NA 0.32  64.10    NA NA 0.99    NA NA 0.002 204.00 NA 0.84 0.04
+## 7     NA 0.003 NA 0.11  63.40    NA NA 0.91 0.001 NA    NA 202.00 NA 0.88 0.05
+## 8     NA 0.002 NA 0.13  23.20    NA NA 0.92 0.001 NA 0.002  69.70 NA 0.97 0.03
+## 9     NA 0.001 NA 0.11   2.20    NA NA 0.85 0.002 NA    NA   1.05 NA 0.76 0.02
+## 10    NA 0.004 NA 0.12  42.40    NA NA 0.94    NA NA    NA 134.00 NA 0.81 0.04
+##      Zn Sulfate carbonate bicarbonate
+## 1  0.01    1.83        NA          NA
+## 2  0.02  413.00        NA          NA
+## 3  0.01 1013.00        NA          NA
+## 4  0.01  207.00        NA          NA
+## 5  0.01  803.00        NA          NA
+## 6  0.02  613.00        NA          NA
+## 7  0.02  607.00        NA          NA
+## 8  0.02  209.00        NA          NA
+## 9  0.01    3.16        NA          NA
+## 10 0.02  403.00        NA          NA</code></pre>
+<p>Sweet! It worked! Adding the other .csv files below.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">survival.wide &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../../../../Research/experiments/sulfate/pteronarcys/raw_data/weekly_survival.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb8-2" title="2"></a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="co">#this file is in wide form, let&#39;s switch it to a more r-friendly long-form</span></a>
+<a class="sourceLine" id="cb8-4" title="4"></a>
+<a class="sourceLine" id="cb8-5" title="5">survival &lt;-<span class="st"> </span><span class="kw">gather</span>(survival.wide, sdate, survival, <span class="dt">na.rm =</span> F, X28.Jul<span class="op">:</span>X28.Dec)</a>
+<a class="sourceLine" id="cb8-6" title="6"></a>
+<a class="sourceLine" id="cb8-7" title="7"></a>
+<a class="sourceLine" id="cb8-8" title="8"></a>
+<a class="sourceLine" id="cb8-9" title="9">survival<span class="op">$</span>Sulfate.mg.L &lt;-<span class="st"> </span><span class="kw">as.character</span>(survival<span class="op">$</span>Sulfate.mg.L)</a>
+<a class="sourceLine" id="cb8-10" title="10"></a>
+<a class="sourceLine" id="cb8-11" title="11">survival &lt;-<span class="st"> </span>survival <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-12" title="12"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sdate2 =</span> dplyr<span class="op">::</span><span class="kw">recode</span>(sdate,                     <span class="co"># note use of dplyr::</span></a>
+<a class="sourceLine" id="cb8-13" title="13">                                <span class="dt">X28.Jul  =</span> <span class="st">&quot;2020-07-28&quot;</span>,</a>
+<a class="sourceLine" id="cb8-14" title="14">                                <span class="dt">X3.Aug =</span> <span class="st">&quot;2020-08-03&quot;</span>,</a>
+<a class="sourceLine" id="cb8-15" title="15">                                <span class="dt">X10.Aug =</span> <span class="st">&quot;2020-08-10&quot;</span>,</a>
+<a class="sourceLine" id="cb8-16" title="16">                                <span class="dt">X17.Aug =</span> <span class="st">&quot;2020-08-17&quot;</span>,</a>
+<a class="sourceLine" id="cb8-17" title="17">                                <span class="dt">X24.Aug =</span> <span class="st">&quot;2020-08-24&quot;</span>,</a>
+<a class="sourceLine" id="cb8-18" title="18">                                <span class="dt">X31.Aug =</span> <span class="st">&quot;2020-08-31&quot;</span>,</a>
+<a class="sourceLine" id="cb8-19" title="19">                                <span class="dt">X8.Sep =</span> <span class="st">&quot;2020-09-08&quot;</span>,</a>
+<a class="sourceLine" id="cb8-20" title="20">                                <span class="dt">X14.Sep =</span> <span class="st">&quot;2020-09-14&quot;</span>,</a>
+<a class="sourceLine" id="cb8-21" title="21">                                <span class="dt">X21.Sep =</span> <span class="st">&quot;2020-09-21&quot;</span>,</a>
+<a class="sourceLine" id="cb8-22" title="22">                                <span class="dt">X28.Sep =</span> <span class="st">&quot;2020-09-28&quot;</span>,</a>
+<a class="sourceLine" id="cb8-23" title="23">                                <span class="dt">X5.Oct =</span> <span class="st">&quot;2020-10-05&quot;</span>,</a>
+<a class="sourceLine" id="cb8-24" title="24">                                <span class="dt">X12.Oct =</span> <span class="st">&quot;2020-10-12&quot;</span>,</a>
+<a class="sourceLine" id="cb8-25" title="25">                                <span class="dt">X19.Oct =</span> <span class="st">&quot;2020-10-19&quot;</span>,</a>
+<a class="sourceLine" id="cb8-26" title="26">                                <span class="dt">X26.Oct =</span> <span class="st">&quot;2020-10-26&quot;</span>,</a>
+<a class="sourceLine" id="cb8-27" title="27">                                <span class="dt">X2.Nov =</span> <span class="st">&quot;2020-11-02&quot;</span>,</a>
+<a class="sourceLine" id="cb8-28" title="28">                                <span class="dt">X9.Nov =</span> <span class="st">&quot;2020-11-09&quot;</span>,</a>
+<a class="sourceLine" id="cb8-29" title="29">                                <span class="dt">X16.Nov =</span> <span class="st">&quot;2020-11-16&quot;</span>,</a>
+<a class="sourceLine" id="cb8-30" title="30">                                <span class="dt">X23.Nov =</span> <span class="st">&quot;2020-11-23&quot;</span>,</a>
+<a class="sourceLine" id="cb8-31" title="31">                                <span class="dt">X30.Nov =</span> <span class="st">&quot;2020-11-30&quot;</span>,</a>
+<a class="sourceLine" id="cb8-32" title="32">                                <span class="dt">X7.Dec =</span> <span class="st">&quot;2020-12-07&quot;</span>,</a>
+<a class="sourceLine" id="cb8-33" title="33">                                <span class="dt">X14.Dec =</span> <span class="st">&quot;2020-12-14&quot;</span>,</a>
+<a class="sourceLine" id="cb8-34" title="34">                                <span class="dt">X21.Dec =</span> <span class="st">&quot;2020-12-21&quot;</span>,</a>
+<a class="sourceLine" id="cb8-35" title="35">                                <span class="dt">X28.Dec =</span> <span class="st">&quot;2020-12-28&quot;</span>))</a>
+<a class="sourceLine" id="cb8-36" title="36"></a>
+<a class="sourceLine" id="cb8-37" title="37"></a>
+<a class="sourceLine" id="cb8-38" title="38"><span class="kw">with</span>(survival, <span class="kw">table</span>(sdate2, sdate)) <span class="co"># a check to make sure therer are 36 values at each old date and recoded date</span></a></code></pre></div>
+<pre><code>##             sdate
+## sdate2       X10.Aug X12.Oct X14.Dec X14.Sep X16.Nov X17.Aug X19.Oct X2.Nov
+##   2020-07-28       0       0       0       0       0       0       0      0
+##   2020-08-03       0       0       0       0       0       0       0      0
+##   2020-08-10      36       0       0       0       0       0       0      0
+##   2020-08-17       0       0       0       0       0      36       0      0
+##   2020-08-24       0       0       0       0       0       0       0      0
+##   2020-08-31       0       0       0       0       0       0       0      0
+##   2020-09-08       0       0       0       0       0       0       0      0
+##   2020-09-14       0       0       0      36       0       0       0      0
+##   2020-09-21       0       0       0       0       0       0       0      0
+##   2020-09-28       0       0       0       0       0       0       0      0
+##   2020-10-05       0       0       0       0       0       0       0      0
+##   2020-10-12       0      36       0       0       0       0       0      0
+##   2020-10-19       0       0       0       0       0       0      36      0
+##   2020-10-26       0       0       0       0       0       0       0      0
+##   2020-11-02       0       0       0       0       0       0       0     36
+##   2020-11-09       0       0       0       0       0       0       0      0
+##   2020-11-16       0       0       0       0      36       0       0      0
+##   2020-11-23       0       0       0       0       0       0       0      0
+##   2020-11-30       0       0       0       0       0       0       0      0
+##   2020-12-07       0       0       0       0       0       0       0      0
+##   2020-12-14       0       0      36       0       0       0       0      0
+##   2020-12-21       0       0       0       0       0       0       0      0
+##   2020-12-28       0       0       0       0       0       0       0      0
+##             sdate
+## sdate2       X21.Dec X21.Sep X23.Nov X24.Aug X26.Oct X28.Dec X28.Jul X28.Sep
+##   2020-07-28       0       0       0       0       0       0      36       0
+##   2020-08-03       0       0       0       0       0       0       0       0
+##   2020-08-10       0       0       0       0       0       0       0       0
+##   2020-08-17       0       0       0       0       0       0       0       0
+##   2020-08-24       0       0       0      36       0       0       0       0
+##   2020-08-31       0       0       0       0       0       0       0       0
+##   2020-09-08       0       0       0       0       0       0       0       0
+##   2020-09-14       0       0       0       0       0       0       0       0
+##   2020-09-21       0      36       0       0       0       0       0       0
+##   2020-09-28       0       0       0       0       0       0       0      36
+##   2020-10-05       0       0       0       0       0       0       0       0
+##   2020-10-12       0       0       0       0       0       0       0       0
+##   2020-10-19       0       0       0       0       0       0       0       0
+##   2020-10-26       0       0       0       0      36       0       0       0
+##   2020-11-02       0       0       0       0       0       0       0       0
+##   2020-11-09       0       0       0       0       0       0       0       0
+##   2020-11-16       0       0       0       0       0       0       0       0
+##   2020-11-23       0       0      36       0       0       0       0       0
+##   2020-11-30       0       0       0       0       0       0       0       0
+##   2020-12-07       0       0       0       0       0       0       0       0
+##   2020-12-14       0       0       0       0       0       0       0       0
+##   2020-12-21      36       0       0       0       0       0       0       0
+##   2020-12-28       0       0       0       0       0      36       0       0
+##             sdate
+## sdate2       X3.Aug X30.Nov X31.Aug X5.Oct X7.Dec X8.Sep X9.Nov
+##   2020-07-28      0       0       0      0      0      0      0
+##   2020-08-03     36       0       0      0      0      0      0
+##   2020-08-10      0       0       0      0      0      0      0
+##   2020-08-17      0       0       0      0      0      0      0
+##   2020-08-24      0       0       0      0      0      0      0
+##   2020-08-31      0       0      36      0      0      0      0
+##   2020-09-08      0       0       0      0      0     36      0
+##   2020-09-14      0       0       0      0      0      0      0
+##   2020-09-21      0       0       0      0      0      0      0
+##   2020-09-28      0       0       0      0      0      0      0
+##   2020-10-05      0       0       0     36      0      0      0
+##   2020-10-12      0       0       0      0      0      0      0
+##   2020-10-19      0       0       0      0      0      0      0
+##   2020-10-26      0       0       0      0      0      0      0
+##   2020-11-02      0       0       0      0      0      0      0
+##   2020-11-09      0       0       0      0      0      0     36
+##   2020-11-16      0       0       0      0      0      0      0
+##   2020-11-23      0       0       0      0      0      0      0
+##   2020-11-30      0      36       0      0      0      0      0
+##   2020-12-07      0       0       0      0     36      0      0
+##   2020-12-14      0       0       0      0      0      0      0
+##   2020-12-21      0       0       0      0      0      0      0
+##   2020-12-28      0       0       0      0      0      0      0</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">survival &lt;-<span class="st"> </span>survival <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">sulfate_trtment =</span> Sulfate.mg.L,</a>
+<a class="sourceLine" id="cb10-3" title="3">         <span class="dt">date =</span> sdate2,</a>
+<a class="sourceLine" id="cb10-4" title="4">         <span class="dt">set_temp =</span> Temperature,</a>
+<a class="sourceLine" id="cb10-5" title="5">         <span class="dt">tank =</span> Tank) <span class="co">#renaming columns that imported into R poorly</span></a>
+<a class="sourceLine" id="cb10-6" title="6"></a>
+<a class="sourceLine" id="cb10-7" title="7">survival &lt;-<span class="st"> </span>survival[,<span class="kw">c</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>,<span class="dv">6</span><span class="op">:</span><span class="dv">7</span>)]</a>
+<a class="sourceLine" id="cb10-8" title="8"></a>
+<a class="sourceLine" id="cb10-9" title="9">survival<span class="op">$</span>survival_ID &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(survival) <span class="co">#add a serial no. column to act as unique primary key</span></a>
+<a class="sourceLine" id="cb10-10" title="10"></a>
+<a class="sourceLine" id="cb10-11" title="11">survival &lt;-<span class="st"> </span>survival[, <span class="kw">c</span>(<span class="st">&quot;survival_ID&quot;</span>, <span class="st">&quot;date&quot;</span>, <span class="st">&quot;tank&quot;</span>, <span class="st">&quot;set_temp&quot;</span>, <span class="st">&quot;sulfate_trtment&quot;</span>, <span class="st">&quot;survival&quot;</span>)] <span class="co">#reordering columns</span></a></code></pre></div>
+<p>Write the survival table into database.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">dbExecute</span>(ptery_sulf_db, <span class="st">&quot;CREATE TABLE survival (</span></a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="st">          survival_ID integer NOT NULL PRIMARY KEY,</span></a>
+<a class="sourceLine" id="cb11-3" title="3"><span class="st">          date text,</span></a>
+<a class="sourceLine" id="cb11-4" title="4"><span class="st">          tank integer,</span></a>
+<a class="sourceLine" id="cb11-5" title="5"><span class="st">          set_temp integer,</span></a>
+<a class="sourceLine" id="cb11-6" title="6"><span class="st">          sulfate_trtment integer, </span></a>
+<a class="sourceLine" id="cb11-7" title="7"><span class="st">          survival integer,</span></a>
+<a class="sourceLine" id="cb11-8" title="8"><span class="st">          FOREIGN KEY(tank) REFERENCES usual(tank));&quot;</span>)</a>
+<a class="sourceLine" id="cb11-9" title="9"></a>
+<a class="sourceLine" id="cb11-10" title="10"><span class="kw">dbWriteTable</span>(ptery_sulf_db, <span class="st">&quot;survival&quot;</span>, survival, <span class="dt">append =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb11-11" title="11"><span class="kw">dbListTables</span>(ptery_sulf_db)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">dbGetQuery</span>(ptery_sulf_db, <span class="st">&quot;SELECT * FROM survival LIMIT 10;&quot;</span>)</a></code></pre></div>
+<pre><code>##    survival_ID       date tank set_temp sulfate_trtment survival
+## 1            1 2020-07-28    1       14               0       10
+## 2            2 2020-07-28    2       14             400       10
+## 3            3 2020-07-28    3       14            1000       10
+## 4            4 2020-07-28    4       14             200       10
+## 5            5 2020-07-28    5       14             800       10
+## 6            6 2020-07-28    6       14             600       10
+## 7            7 2020-07-28    7       22             600       10
+## 8            8 2020-07-28    8       22             200       10
+## 9            9 2020-07-28    9       22               0       10
+## 10          10 2020-07-28   10       22             400       10</code></pre>
+<p>Add weekly water measurement data. NOTE: This data has not all been entered yet, so this data file is really incomplete. Will need to go back and re-add to database when all data has been entered.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">water_meas &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../../../../Research/experiments/sulfate/pteronarcys/raw_data/weekly_water_measurements.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb14-2" title="2"></a>
+<a class="sourceLine" id="cb14-3" title="3"><span class="co">#rename some columns</span></a>
+<a class="sourceLine" id="cb14-4" title="4">water_meas &lt;-<span class="st"> </span>water_meas <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-5" title="5"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">date =</span> ï..DATE,</a>
+<a class="sourceLine" id="cb14-6" title="6">         <span class="dt">measured_temp =</span> TEMP..C.,</a>
+<a class="sourceLine" id="cb14-7" title="7">         <span class="dt">DO_percent =</span> DO.,</a>
+<a class="sourceLine" id="cb14-8" title="8">         <span class="dt">DO_mgL =</span> DO..mg.L.,</a>
+<a class="sourceLine" id="cb14-9" title="9">         <span class="dt">conductivity =</span> CONDUCTIVITY,</a>
+<a class="sourceLine" id="cb14-10" title="10">         <span class="dt">tank =</span> TANK)</a>
+<a class="sourceLine" id="cb14-11" title="11"></a>
+<a class="sourceLine" id="cb14-12" title="12"><span class="co">#add a serial no. column to act as unique primary key, put it as first column</span></a>
+<a class="sourceLine" id="cb14-13" title="13">water_meas &lt;-<span class="st"> </span><span class="kw">add_column</span>(water_meas, <span class="dt">water_ID =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(water_meas), <span class="dt">.after =</span> <span class="dv">0</span>)</a></code></pre></div>
+<p>Create water_measures table in SQLite.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">dbExecute</span>(ptery_sulf_db, <span class="st">&quot;CREATE TABLE water_measures (</span></a>
+<a class="sourceLine" id="cb15-2" title="2"><span class="st">          water_ID integer NOT NULL PRIMARY KEY,</span></a>
+<a class="sourceLine" id="cb15-3" title="3"><span class="st">          date text,</span></a>
+<a class="sourceLine" id="cb15-4" title="4"><span class="st">          tank integer,</span></a>
+<a class="sourceLine" id="cb15-5" title="5"><span class="st">          measured_temp float,</span></a>
+<a class="sourceLine" id="cb15-6" title="6"><span class="st">          DO_percent float, </span></a>
+<a class="sourceLine" id="cb15-7" title="7"><span class="st">          DO_mgL float,</span></a>
+<a class="sourceLine" id="cb15-8" title="8"><span class="st">          conductivity integer,</span></a>
+<a class="sourceLine" id="cb15-9" title="9"><span class="st">          FOREIGN KEY(tank) REFERENCES survival(tank));&quot;</span>)</a>
+<a class="sourceLine" id="cb15-10" title="10"></a>
+<a class="sourceLine" id="cb15-11" title="11"><span class="kw">dbWriteTable</span>(ptery_sulf_db, <span class="st">&quot;water_measures&quot;</span>, water_meas, <span class="dt">append =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb15-12" title="12"><span class="kw">dbListTables</span>(ptery_sulf_db) </a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">dbGetQuery</span>(ptery_sulf_db, <span class="st">&quot;SELECT * FROM water_measures LIMIT 10;&quot;</span>)</a></code></pre></div>
+<pre><code>##    water_ID      date tank measured_temp DO_percent DO_mgL conductivity
+## 1         1 7/29/2020    1          15.4       77.7   7.77           60
+## 2         2 7/29/2020    2          15.4       82.6   8.26          815
+## 3         3 7/29/2020    3          15.5       82.5   8.24         1685
+## 4         4 7/29/2020    4          15.4       83.8   8.38          485
+## 5         5 7/29/2020    5          15.3       83.5   8.37         1395
+## 6         6 7/29/2020    6          14.8       84.0   8.50         1100
+## 7         7 7/29/2020    7          21.4       83.8   7.46         1165
+## 8         8 7/29/2020    8          21.3       82.2   7.38          510
+## 9         9 7/29/2020    9          21.4       83.1   7.39           70
+## 10       10 7/29/2020   10          21.5       84.6   7.47          850</code></pre>
+<p>Import head width data.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">head_width &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../../../../Research/experiments/sulfate/pteronarcys/raw_data/head-width_measurements.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb18-2" title="2"></a>
+<a class="sourceLine" id="cb18-3" title="3"><span class="co">#rename some columns</span></a>
+<a class="sourceLine" id="cb18-4" title="4">head_width &lt;-<span class="st"> </span>head_width <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb18-5" title="5"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">meas_date =</span> DATE,</a>
+<a class="sourceLine" id="cb18-6" title="6">         <span class="dt">week =</span> WEEK,</a>
+<a class="sourceLine" id="cb18-7" title="7">         <span class="dt">observer =</span> MEASURED_BY,</a>
+<a class="sourceLine" id="cb18-8" title="8">         <span class="dt">bug_ID =</span> ID,</a>
+<a class="sourceLine" id="cb18-9" title="9">         <span class="dt">tank =</span> TANK,</a>
+<a class="sourceLine" id="cb18-10" title="10">         <span class="dt">head_width =</span> HEAD_WIDTH)</a>
+<a class="sourceLine" id="cb18-11" title="11"></a>
+<a class="sourceLine" id="cb18-12" title="12"><span class="co">#add a serial no. column to act as unique primary key, put it as first column</span></a>
+<a class="sourceLine" id="cb18-13" title="13">head_width &lt;-<span class="st"> </span><span class="kw">add_column</span>(head_width, <span class="dt">meas_ID =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(head_width), <span class="dt">.after =</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb18-14" title="14"></a>
+<a class="sourceLine" id="cb18-15" title="15"><span class="co">#eliminate the &quot;ZOOM&quot; and &quot;MICROMETER UNITS&quot; columns (not needed for db)</span></a>
+<a class="sourceLine" id="cb18-16" title="16">head_width &lt;-<span class="st"> </span>head_width[,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">6</span><span class="op">:</span><span class="dv">7</span>,<span class="dv">10</span>)]</a></code></pre></div>
+<p>Create head_width table in SQLite.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">dbExecute</span>(ptery_sulf_db, <span class="st">&quot;CREATE TABLE head_width (</span></a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="st">          meas_ID integer NOT NULL PRIMARY KEY,</span></a>
+<a class="sourceLine" id="cb19-3" title="3"><span class="st">          week integer,</span></a>
+<a class="sourceLine" id="cb19-4" title="4"><span class="st">          meas_date text,</span></a>
+<a class="sourceLine" id="cb19-5" title="5"><span class="st">          observer text,</span></a>
+<a class="sourceLine" id="cb19-6" title="6"><span class="st">          tank integer,</span></a>
+<a class="sourceLine" id="cb19-7" title="7"><span class="st">          bug_ID varchar(4),</span></a>
+<a class="sourceLine" id="cb19-8" title="8"><span class="st">          head_width float,</span></a>
+<a class="sourceLine" id="cb19-9" title="9"><span class="st">          FOREIGN KEY(tank) REFERENCES survival(tank));&quot;</span>)</a>
+<a class="sourceLine" id="cb19-10" title="10"></a>
+<a class="sourceLine" id="cb19-11" title="11"><span class="kw">dbWriteTable</span>(ptery_sulf_db, <span class="st">&quot;head_width&quot;</span>, head_width, <span class="dt">append =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb19-12" title="12"><span class="kw">dbListTables</span>(ptery_sulf_db) </a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">dbGetQuery</span>(ptery_sulf_db, <span class="st">&quot;SELECT * FROM head_width LIMIT 10;&quot;</span>)</a></code></pre></div>
+<pre><code>##    meas_ID week meas_date observer tank bug_ID head_width
+## 1        1    0 7/28/2020       KG    1    65F       1.67
+## 2        2    0 7/28/2020       KG    1    44F       1.91
+## 3        3    0 7/28/2020       KG    1    85D       2.11
+## 4        4    0 7/28/2020       KG    1    25A       1.93
+## 5        5    0 7/28/2020       KG    1    16E       1.93
+## 6        6    0 7/28/2020       KG    1    22B       1.49
+## 7        7    0 7/28/2020       KG    1    20G       1.82
+## 8        8    0 7/28/2020       KG    1    98D       1.69
+## 9        9    0 7/28/2020       KG    1    97A       1.96
+## 10      10    0 7/28/2020       KG    1   38D1       1.76</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["project_bookdown.pdf", "project_bookdown.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
