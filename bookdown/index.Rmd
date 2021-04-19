@@ -1,0 +1,17 @@
+--- 
+title: "WILD6900: Reproducible Science Project"
+author: "Katy Gardner"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "This is the bookdown file desrcibing the process I am taking in constructing my final project for WILD6900: Reproducible Science, a graduate course at Utah State University."
+---
+
+# Introduction
+
+For my final project, I will use data collected during long-term laboratory experiments I am running for my dissertation. The primary goal of my project will be to not only clean and manage the data I have already collected, but to create a system that will keep my future experiments’ data organized. Data collected during these experiments include: survivorship data, growth data, water chemistry, and water quality measurements. Planned analyses for these data are to use a random coefficients model to analyze growth data and some form of survivor analysis on the survivor data (to be determined which one). Overall, these experiments are designed to investigate the effects of salinity and temperature on aquatic insect growth and survival. 
+
+Chapter \@ref(database) details the process of creating an RSQLite database in RMarkdown and importing all project data (mentioned above: survivorship, growth, water quality and water chemistry) into this database.
