@@ -1,3 +1,34 @@
+--- 
+title: "WILD6900: Reproducible Science Project"
+author: "Katy Gardner"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "This is the bookdown file desrcibing the process I am taking in constructing my final project for WILD6900: Reproducible Science, a graduate course at Utah State University."
+---
+--- 
+title: "WILD6900: Reproducible Science Project"
+author: "Katy Gardner"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "This is the bookdown file desrcibing the process I am taking in constructing my final project for WILD6900: Reproducible Science, a graduate course at Utah State University."
+---
+
+# Introduction
+
+For my final project, I will use data collected during long-term laboratory experiments I am running for my dissertation. The primary goal of my project will be to not only clean and manage the data I have already collected, but to create a system that will keep my future experiments’ data organized. Data collected during these experiments include: survivorship data, growth data, water chemistry, and water quality measurements. Planned analyses for these data are to use a random coefficients model to analyze growth data and some form of survivor analysis on the survivor data (to be determined which one). Overall, these experiments are designed to investigate the effects of salinity and temperature on aquatic insect growth and survival. 
+
+Chapter \@ref(database) details the process of creating an RSQLite database in RMarkdown and importing all project data (mentioned above: survivorship, growth, water quality and water chemistry) into this database.
+
+<!--chapter:end:index.Rmd-->
+
 
 # Building my SQLite database {#database}
 
@@ -16,7 +47,7 @@ library(tibble)
 For my project, I have 4 main .csv files that I want to incorporate into one database. The files pertain to two main entities: the tanks and the bugs. Tanks contain bugs in certain treatment conditions (temperature and added sulfate). There are 3 sampling processes going on: tanks, bugs, and chemical analyses. Chemical analyses are conducted prior to the start of the experiment and at the end of the experiment. Tanks are measured approximately twice a week (with some variability) for dissolved oxygen, conductivity, and temperature levels as a sort of maintenance measurement. The number of bugs alive per tank is measured once a week and recorded as that tank's survival. Finally, bugs are measured once every two weeks for head capsule width, which can then be converted to a specific growth measurement. The database structure I intend to follow is displayed below.
 
 ```{r image, echo = FALSE, fig.align = "center", fig.cap="Database structure. Italics denote primary key, bold denotes foreign keys.", out.width='100%'}
-knitr::include_graphics("assignment4.jpg")
+knitr::include_graphics("../../assignment4.jpg")
 ```
 
 ## Creating the database connection
@@ -35,8 +66,8 @@ ptery_sulf_db <- dbConnect(drv = RSQLite::SQLite(),
 Next, I want to load in all of the .csv files I intend to add to the database. I'll start with USUAL water measurement data.
 ```{r}
 
-USUAL_start <- read.csv("../raw_data/2020-07_USUAL_results.csv")
-USUAL_end <- read.csv("../raw_data/2021-01_USUAL_results.csv")
+USUAL_start <- read.csv("../../../../Research/experiments/sulfate/pteronarcys/raw_data/2020-07_USUAL_results.csv")
+USUAL_end <- read.csv("../../../../Research/experiments/sulfate/pteronarcys/raw_data/2021-01_USUAL_results.csv")
 #original USUAL docs had "<" when measurement values were below detection limits (typically <0.001)
 #I replaced "<" with empty cells for R purposes. Not sure if empty/blank cells are more appropriate than 0's?
 ```
@@ -128,7 +159,7 @@ dbGetQuery(ptery_sulf_db, "SELECT * FROM usual LIMIT 10;")
 Sweet! It worked! Adding the other .csv files below.
 
 ```{r}
-survival.wide <- read.csv("../raw_data/weekly_survival.csv")
+survival.wide <- read.csv("../../../../Research/experiments/sulfate/pteronarcys/raw_data/weekly_survival.csv")
 
 #this file is in wide form, let's switch it to a more r-friendly long-form
 
@@ -206,7 +237,7 @@ Add weekly water measurement data. NOTE: This data has not all been entered yet,
 
 ```{r}
 
-water_meas <- read.csv("../raw_data/weekly_water_measurements.csv")
+water_meas <- read.csv("../../../../Research/experiments/sulfate/pteronarcys/raw_data/weekly_water_measurements.csv")
 
 #rename some columns
 water_meas <- water_meas %>%
@@ -247,7 +278,7 @@ dbGetQuery(ptery_sulf_db, "SELECT * FROM water_measures LIMIT 10;")
 Import head width data.
 
 ```{r}
-head_width <- read.csv("../raw_data/head-width_measurements.csv")
+head_width <- read.csv("../../../../Research/experiments/sulfate/pteronarcys/raw_data/head-width_measurements.csv")
 
 #rename some columns
 head_width <- head_width %>%
@@ -286,3 +317,6 @@ dbListTables(ptery_sulf_db)
 dbGetQuery(ptery_sulf_db, "SELECT * FROM head_width LIMIT 10;")
 
 ```
+
+<!--chapter:end:01-database.Rmd-->
+
