@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>WILD6900: Reproducible Science Project</title>
   <meta name="description" content="This is the bookdown file desrcibing the process I am taking in constructing my final project for WILD6900: Reproducible Science, a graduate course at Utah State University." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="WILD6900: Reproducible Science Project" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Katy Gardner" />
 
 
-<meta name="date" content="2021-03-15" />
+<meta name="date" content="2021-04-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 
 <link rel="next" href="database.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,6 +50,15 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -115,6 +124,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -131,11 +141,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">WILD6900: Reproducible Science Project</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#project-goals"><i class="fa fa-check"></i><b>1.1</b> Project Goals</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#project-outline"><i class="fa fa-check"></i><b>1.2</b> Project Outline</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="database.html"><a href="database.html"><i class="fa fa-check"></i><b>2</b> Building my SQLite database</a><ul>
-<li class="chapter" data-level="2.1" data-path="database.html"><a href="database.html#creating-the-database-connection"><i class="fa fa-check"></i><b>2.1</b> Creating the database connection</a></li>
-<li class="chapter" data-level="2.2" data-path="database.html"><a href="database.html#load-in-.csv-data"><i class="fa fa-check"></i><b>2.2</b> Load in .csv data</a></li>
-<li class="chapter" data-level="2.3" data-path="database.html"><a href="database.html#write-a-table-into-the-database"><i class="fa fa-check"></i><b>2.3</b> Write a table into the database</a></li>
+<li class="chapter" data-level="2.1" data-path="database.html"><a href="database.html#usual-water-data"><i class="fa fa-check"></i><b>2.1</b> USUAL water data</a></li>
+<li class="chapter" data-level="2.2" data-path="database.html"><a href="database.html#survival-data"><i class="fa fa-check"></i><b>2.2</b> Survival data</a></li>
+<li class="chapter" data-level="2.3" data-path="database.html"><a href="database.html#weekly-water-measurements"><i class="fa fa-check"></i><b>2.3</b> Weekly water measurements</a></li>
+<li class="chapter" data-level="2.4" data-path="database.html"><a href="database.html#head-widths"><i class="fa fa-check"></i><b>2.4</b> Head widths</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="survival.html"><a href="survival.html"><i class="fa fa-check"></i><b>3</b> Survival</a><ul>
+<li class="chapter" data-level="3.1" data-path="survival.html"><a href="survival.html#load-in-data"><i class="fa fa-check"></i><b>3.1</b> Load in data</a></li>
+<li class="chapter" data-level="3.2" data-path="survival.html"><a href="survival.html#plots"><i class="fa fa-check"></i><b>3.2</b> Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="fitness.html"><a href="fitness.html"><i class="fa fa-check"></i><b>4</b> Fitness index</a><ul>
+<li class="chapter" data-level="4.1" data-path="fitness.html"><a href="fitness.html#generate-fitness-index"><i class="fa fa-check"></i><b>4.1</b> Generate fitness index</a></li>
+<li class="chapter" data-level="4.2" data-path="fitness.html"><a href="fitness.html#data-visualization"><i class="fa fa-check"></i><b>4.2</b> Data visualization</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="fitness.html"><a href="fitness.html#d-surface-plot"><i class="fa fa-check"></i><b>4.2.1</b> 3D Surface plot</a></li>
+<li class="chapter" data-level="4.2.2" data-path="fitness.html"><a href="fitness.html#grouped-bar-plots"><i class="fa fa-check"></i><b>4.2.2</b> Grouped bar plots</a></li>
+<li class="chapter" data-level="4.2.3" data-path="fitness.html"><a href="fitness.html#fitness-index-averaged-bar-plots"><i class="fa fa-check"></i><b>4.2.3</b> Fitness index averaged bar plots</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -160,13 +186,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">WILD6900: Reproducible Science Project</h1>
 <p class="author"><em>Katy Gardner</em></p>
-<p class="date"><em>2021-03-15</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-04-26</em></p>
 </div>
 <div id="introduction" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
-<p>For my final project, I will use data collected during long-term laboratory experiments I am running for my dissertation. The primary goal of my project will be to not only clean and manage the data I have already collected, but to create a system that will keep my future experiments’ data organized. Data collected during these experiments include: survivorship data, growth data, water chemistry, and water quality measurements. Planned analyses for these data are to use a random coefficients model to analyze growth data and some form of survivor analysis on the survivor data (to be determined which one). Overall, these experiments are designed to investigate the effects of salinity and temperature on aquatic insect growth and survival.</p>
+<p>For my final project, I will use data collected during long-term laboratory experiments I am running for my dissertation. Data collected during these experiments include: survivorship data, growth data, water chemistry, and water quality measurements. Overall, these experiments are designed to investigate the effects of salinity and temperature on aquatic insect growth and survival. The data used in this project are from my first experiment, in which I exposed <em>Pteronarcys californica</em> nymphs (the giant salmonfly) to 6 sulfate concentration treatments across 6 temperature treatments, for a total of 36 exposure treatments.</p>
+<div id="project-goals" class="section level2">
+<h2><span class="header-section-number">1.1</span> Project Goals</h2>
+<p>In this project, I will:</p>
+<ol style="list-style-type: decimal">
+<li>clean and manage the data I have collected for this experiment</li>
+<li>create a database structure that can also be used in future experiments</li>
+<li>generate a fitness index</li>
+<li>visually inspect collected data for treatment effects on
+<ol style="list-style-type: lower-roman">
+<li>survival and</li>
+<li>fitness index</li>
+</ol></li>
+</ol>
+</div>
+<div id="project-outline" class="section level2">
+<h2><span class="header-section-number">1.2</span> Project Outline</h2>
 <p>Chapter <a href="database.html#database">2</a> details the process of creating an RSQLite database in RMarkdown and importing all project data (mentioned above: survivorship, growth, water quality and water chemistry) into this database.</p>
+<p>Chapter <a href="survival.html#survival">3</a> visually inspects the survival data for trends in % survival in response to either the sulfate or temperature treatments.</p>
+<p>Chapter <a href="fitness.html#fitness">4</a> generates a fitness index using the survival and growth data from our database, and uses the fitness index data in plots to visualize the effects of temperature and sulfate treatments on <em>Pteronarcys</em> fitness.</p>
 
+</div>
 </div>
             </section>
 
@@ -197,6 +242,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

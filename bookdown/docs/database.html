@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Building my SQLite database | WILD6900: Reproducible Science Project</title>
   <meta name="description" content="This is the bookdown file desrcibing the process I am taking in constructing my final project for WILD6900: Reproducible Science, a graduate course at Utah State University." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Building my SQLite database | WILD6900: Reproducible Science Project" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Katy Gardner" />
 
 
-<meta name="date" content="2021-03-15" />
+<meta name="date" content="2021-04-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,8 +32,8 @@
   
   
 <link rel="prev" href="index.html"/>
-
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="next" href="survival.html"/>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,6 +50,15 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -115,6 +124,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -131,11 +141,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">WILD6900: Reproducible Science Project</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#project-goals"><i class="fa fa-check"></i><b>1.1</b> Project Goals</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#project-outline"><i class="fa fa-check"></i><b>1.2</b> Project Outline</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="database.html"><a href="database.html"><i class="fa fa-check"></i><b>2</b> Building my SQLite database</a><ul>
-<li class="chapter" data-level="2.1" data-path="database.html"><a href="database.html#creating-the-database-connection"><i class="fa fa-check"></i><b>2.1</b> Creating the database connection</a></li>
-<li class="chapter" data-level="2.2" data-path="database.html"><a href="database.html#load-in-.csv-data"><i class="fa fa-check"></i><b>2.2</b> Load in .csv data</a></li>
-<li class="chapter" data-level="2.3" data-path="database.html"><a href="database.html#write-a-table-into-the-database"><i class="fa fa-check"></i><b>2.3</b> Write a table into the database</a></li>
+<li class="chapter" data-level="2.1" data-path="database.html"><a href="database.html#usual-water-data"><i class="fa fa-check"></i><b>2.1</b> USUAL water data</a></li>
+<li class="chapter" data-level="2.2" data-path="database.html"><a href="database.html#survival-data"><i class="fa fa-check"></i><b>2.2</b> Survival data</a></li>
+<li class="chapter" data-level="2.3" data-path="database.html"><a href="database.html#weekly-water-measurements"><i class="fa fa-check"></i><b>2.3</b> Weekly water measurements</a></li>
+<li class="chapter" data-level="2.4" data-path="database.html"><a href="database.html#head-widths"><i class="fa fa-check"></i><b>2.4</b> Head widths</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="survival.html"><a href="survival.html"><i class="fa fa-check"></i><b>3</b> Survival</a><ul>
+<li class="chapter" data-level="3.1" data-path="survival.html"><a href="survival.html#load-in-data"><i class="fa fa-check"></i><b>3.1</b> Load in data</a></li>
+<li class="chapter" data-level="3.2" data-path="survival.html"><a href="survival.html#plots"><i class="fa fa-check"></i><b>3.2</b> Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="fitness.html"><a href="fitness.html"><i class="fa fa-check"></i><b>4</b> Fitness index</a><ul>
+<li class="chapter" data-level="4.1" data-path="fitness.html"><a href="fitness.html#generate-fitness-index"><i class="fa fa-check"></i><b>4.1</b> Generate fitness index</a></li>
+<li class="chapter" data-level="4.2" data-path="fitness.html"><a href="fitness.html#data-visualization"><i class="fa fa-check"></i><b>4.2</b> Data visualization</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="fitness.html"><a href="fitness.html#d-surface-plot"><i class="fa fa-check"></i><b>4.2.1</b> 3D Surface plot</a></li>
+<li class="chapter" data-level="4.2.2" data-path="fitness.html"><a href="fitness.html#grouped-bar-plots"><i class="fa fa-check"></i><b>4.2.2</b> Grouped bar plots</a></li>
+<li class="chapter" data-level="4.2.3" data-path="fitness.html"><a href="fitness.html#fitness-index-averaged-bar-plots"><i class="fa fa-check"></i><b>4.2.3</b> Fitness index averaged bar plots</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -168,23 +194,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb1-7" title="7"><span class="kw">library</span>(tibble)</a></code></pre></div>
 <p>For my project, I have 4 main .csv files that I want to incorporate into one database. The files pertain to two main entities: the tanks and the bugs. Tanks contain bugs in certain treatment conditions (temperature and added sulfate). There are 3 sampling processes going on: tanks, bugs, and chemical analyses. Chemical analyses are conducted prior to the start of the experiment and at the end of the experiment. Tanks are measured approximately twice a week (with some variability) for dissolved oxygen, conductivity, and temperature levels as a sort of maintenance measurement. The number of bugs alive per tank is measured once a week and recorded as that tank’s survival. Finally, bugs are measured once every two weeks for head capsule width, which can then be converted to a specific growth measurement. The database structure I intend to follow is displayed below.</p>
 <div class="figure" style="text-align: center"><span id="fig:image"></span>
-<img src="../../assignment4.jpg" alt="Database structure. Italics denote primary key, bold denotes foreign keys." width="100%" />
+<img src="assignment4.jpg" alt="Database structure. Italics denote primary key, bold denotes foreign keys." width="100%" />
 <p class="caption">
 Figure 2.1: Database structure. Italics denote primary key, bold denotes foreign keys.
 </p>
 </div>
-<div id="creating-the-database-connection" class="section level2">
-<h2><span class="header-section-number">2.1</span> Creating the database connection</h2>
+<div id="usual-water-data" class="section level2">
+<h2><span class="header-section-number">2.1</span> USUAL water data</h2>
 <p>First, I will create a database connection in the “project” folder of my Reproducible Science class folder.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co">#establish a database connection</span></a>
 <a class="sourceLine" id="cb2-2" title="2">ptery_sulf_db &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(<span class="dt">drv =</span> RSQLite<span class="op">::</span><span class="kw">SQLite</span>(), </a>
-<a class="sourceLine" id="cb2-3" title="3">                        <span class="st">&quot;../../project/ptery_sulf.db&quot;</span>)</a></code></pre></div>
-</div>
-<div id="load-in-.csv-data" class="section level2">
-<h2><span class="header-section-number">2.2</span> Load in .csv data</h2>
+<a class="sourceLine" id="cb2-3" title="3">                        <span class="st">&quot;../raw_data/ptery_sulf.db&quot;</span>)</a></code></pre></div>
 <p>Next, I want to load in all of the .csv files I intend to add to the database. I’ll start with USUAL water measurement data.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">USUAL_start &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../../../../Research/experiments/sulfate/pteronarcys/raw_data/2020-07_USUAL_results.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb3-2" title="2">USUAL_end &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../../../../Research/experiments/sulfate/pteronarcys/raw_data/2021-01_USUAL_results.csv&quot;</span>)</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">USUAL_start &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../raw_data/2020-07_USUAL_results.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb3-2" title="2">USUAL_end &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../raw_data/2021-01_USUAL_results.csv&quot;</span>)</a>
 <a class="sourceLine" id="cb3-3" title="3"><span class="co">#original USUAL docs had &quot;&lt;&quot; when measurement values were below detection limits (typically &lt;0.001)</span></a>
 <a class="sourceLine" id="cb3-4" title="4"><span class="co">#I replaced &quot;&lt;&quot; with empty cells for R purposes. Not sure if empty/blank cells are more appropriate than 0&#39;s?</span></a></code></pre></div>
 <p>We want to combine these two USUAL .csv files into one for the database. Some cleaning needs to be done before merging the two files. Additionally, carbonate and bicarbonate were only measured in the second round of tests (“end”), so these columns will need to be added to the first document.</p>
@@ -213,9 +236,6 @@ Figure 2.1: Database structure. Italics denote primary key, bold denotes foreign
 <a class="sourceLine" id="cb4-23" title="23"></a>
 <a class="sourceLine" id="cb4-24" title="24"><span class="co">#merge files vertically</span></a>
 <a class="sourceLine" id="cb4-25" title="25">usual &lt;-<span class="st"> </span><span class="kw">Merge</span>(USUAL_start, USUAL_end, <span class="dt">by=</span><span class="st">&quot;rows&quot;</span>)</a></code></pre></div>
-</div>
-<div id="write-a-table-into-the-database" class="section level2">
-<h2><span class="header-section-number">2.3</span> Write a table into the database</h2>
 <p>Let’s add the USUAL dataframe into our database.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">#write table in database</span></a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="kw">dbExecute</span>(ptery_sulf_db, <span class="st">&quot;CREATE TABLE usual (</span></a>
@@ -288,8 +308,11 @@ Figure 2.1: Database structure. Italics denote primary key, bold denotes foreign
 ## 8  0.02  209.00        NA          NA
 ## 9  0.01    3.16        NA          NA
 ## 10 0.02  403.00        NA          NA</code></pre>
-<p>Sweet! It worked! Adding the other .csv files below.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">survival.wide &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../../../../Research/experiments/sulfate/pteronarcys/raw_data/weekly_survival.csv&quot;</span>)</a>
+<p>Sweet! It worked! Adding the other .csv files next.</p>
+</div>
+<div id="survival-data" class="section level2">
+<h2><span class="header-section-number">2.2</span> Survival data</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">survival.wide &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../raw_data/weekly_survival.csv&quot;</span>)</a>
 <a class="sourceLine" id="cb8-2" title="2"></a>
 <a class="sourceLine" id="cb8-3" title="3"><span class="co">#this file is in wide form, let&#39;s switch it to a more r-friendly long-form</span></a>
 <a class="sourceLine" id="cb8-4" title="4"></a>
@@ -437,8 +460,11 @@ Figure 2.1: Database structure. Italics denote primary key, bold denotes foreign
 ## 8            8 2020-07-28    8       22             200       10
 ## 9            9 2020-07-28    9       22               0       10
 ## 10          10 2020-07-28   10       22             400       10</code></pre>
+</div>
+<div id="weekly-water-measurements" class="section level2">
+<h2><span class="header-section-number">2.3</span> Weekly water measurements</h2>
 <p>Add weekly water measurement data. NOTE: This data has not all been entered yet, so this data file is really incomplete. Will need to go back and re-add to database when all data has been entered.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">water_meas &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../../../../Research/experiments/sulfate/pteronarcys/raw_data/weekly_water_measurements.csv&quot;</span>)</a>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">water_meas &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../raw_data/weekly_water_measurements.csv&quot;</span>)</a>
 <a class="sourceLine" id="cb14-2" title="2"></a>
 <a class="sourceLine" id="cb14-3" title="3"><span class="co">#rename some columns</span></a>
 <a class="sourceLine" id="cb14-4" title="4">water_meas &lt;-<span class="st"> </span>water_meas <span class="op">%&gt;%</span></a>
@@ -476,8 +502,11 @@ Figure 2.1: Database structure. Italics denote primary key, bold denotes foreign
 ## 8         8 7/29/2020    8          21.3       82.2   7.38          510
 ## 9         9 7/29/2020    9          21.4       83.1   7.39           70
 ## 10       10 7/29/2020   10          21.5       84.6   7.47          850</code></pre>
+</div>
+<div id="head-widths" class="section level2">
+<h2><span class="header-section-number">2.4</span> Head widths</h2>
 <p>Import head width data.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">head_width &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../../../../Research/experiments/sulfate/pteronarcys/raw_data/head-width_measurements.csv&quot;</span>)</a>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">head_width &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../raw_data/head-width_measurements.csv&quot;</span>)</a>
 <a class="sourceLine" id="cb18-2" title="2"></a>
 <a class="sourceLine" id="cb18-3" title="3"><span class="co">#rename some columns</span></a>
 <a class="sourceLine" id="cb18-4" title="4">head_width &lt;-<span class="st"> </span>head_width <span class="op">%&gt;%</span></a>
@@ -526,8 +555,8 @@ Figure 2.1: Database structure. Italics denote primary key, bold denotes foreign
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="survival.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -550,6 +579,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

@@ -19,18 +19,16 @@ For my project, I have 4 main .csv files that I want to incorporate into one dat
 knitr::include_graphics("assignment4.jpg")
 ```
 
-## Creating the database connection
+## USUAL water data
 
 First, I will create a database connection in the "project" folder of my Reproducible Science class folder.
 ```{r}
 
 #establish a database connection
 ptery_sulf_db <- dbConnect(drv = RSQLite::SQLite(), 
-                        "../../project/ptery_sulf.db")
+                        "../raw_data/ptery_sulf.db")
 
 ```
-
-## Load in .csv data
 
 Next, I want to load in all of the .csv files I intend to add to the database. I'll start with USUAL water measurement data.
 ```{r}
@@ -71,9 +69,6 @@ USUAL_start[, empty_cols] <- NA
 usual <- Merge(USUAL_start, USUAL_end, by="rows")
 
 ```
-
-
-## Write a table into the database
 
 Let's add the USUAL dataframe into our database.
 
@@ -125,7 +120,9 @@ dbGetQuery(ptery_sulf_db, "SELECT * FROM usual LIMIT 10;")
 
 ```
 
-Sweet! It worked! Adding the other .csv files below.
+Sweet! It worked! Adding the other .csv files next.
+
+## Survival data
 
 ```{r}
 survival.wide <- read.csv("../raw_data/weekly_survival.csv")
@@ -202,6 +199,8 @@ dbGetQuery(ptery_sulf_db, "SELECT * FROM survival LIMIT 10;")
 
 ```
 
+
+## Weekly water measurements
 Add weekly water measurement data. NOTE: This data has not all been entered yet, so this data file is really incomplete. Will need to go back and re-add to database when all data has been entered.
 
 ```{r}
@@ -244,6 +243,8 @@ dbGetQuery(ptery_sulf_db, "SELECT * FROM water_measures LIMIT 10;")
 
 ```
 
+
+## Head widths
 Import head width data.
 
 ```{r}
