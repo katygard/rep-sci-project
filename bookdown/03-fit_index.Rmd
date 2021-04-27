@@ -121,16 +121,14 @@ tank_fit$trtment <- as.factor(tank_fit$trtment)
 ggplot(tank_fit, aes(fill=trtment, y=fit_index, x=temp)) + 
   geom_bar(position="dodge", stat="identity") +
   scale_fill_viridis_d()+
-  xlab("Temperature") +
-  ylab("Fitness Index") +
+  labs(x = "Temperature (°C)", y = "Fitness Index", fill = "Sulfate (mg/L)") +
   theme_bw()
 
 #grouped by sulfate treatment
 ggplot(tank_fit, aes(fill=temp, y=fit_index, x=trtment)) + 
   geom_bar(position="dodge", stat="identity")+
   scale_fill_viridis_d()+
-  xlab("Sulfate (mg/L)") +
-  ylab("Fitness Index") +
+  labs(x = "Sulfate (mg/L)", y = "Fitness Index", fill = "Temperature (°C)") +
   theme_bw()
 ```
 
@@ -149,9 +147,9 @@ ggplot(tank_fit, aes(x=temp, y=fit_index, color = temp, fill = temp)) +
   ggrepel::geom_text_repel(aes(label = tank), color = "black", size = 2.5, segment.color = "grey") +
   scale_color_viridis_d() +
   scale_fill_viridis_d() +
-  xlab("Temperature") +
-  ylab("Fitness Index") +
-  theme_bw()
+  labs(x = "Temperature (°C)", y = "Fitness Index") +
+  theme_bw() +
+  theme(legend.position = "none")
 
 #fitness index averaged by sulfate treatment
 avg <- tank_fit %>%
@@ -164,9 +162,9 @@ ggplot(tank_fit, aes(x=trtment, y=fit_index, color = trtment, fill = trtment)) +
   ggrepel::geom_text_repel(aes(label = tank), color = "black", size = 2.5, segment.color = "grey") +
   scale_color_viridis_d() +
   scale_fill_viridis_d() +
-  xlab("Sulfate mg/L") +
-  ylab("Fitness Index") +
-  theme_bw()
+  labs(x = "Sulfate (mg/L)", y = "Fitness Index") +
+  theme_bw() +
+  theme(legend.position = "none")
 ```
 
 In the plots, the points represent individual tanks, while the bars represent the average fitness index of those tanks.
