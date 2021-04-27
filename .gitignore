@@ -1,6 +1,6 @@
 /manuscript/
 /outputs/
-*.png
+!docs/*.png
 *.pdf
 !database_structure.pdf
 /git.Rproj.user/
